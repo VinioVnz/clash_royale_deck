@@ -17,9 +17,9 @@ class CrCard {
 
   factory CrCard.fromJson(Map<String,dynamic> json){
     return CrCard(
-      id: json['id'], 
+      id: json['id'] ?? 0, 
       name: json['name'], 
-      elixirCost: json['elixirCost'], 
+      elixirCost: json['elixirCost'] ?? 0, 
       rarity: json['rarity'], 
       iconUrl: json['iconUrls']?['medium'],
       evoIconUrl: json['iconUrls']?['evolutionMedium']

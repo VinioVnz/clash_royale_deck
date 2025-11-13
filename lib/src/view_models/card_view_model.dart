@@ -13,13 +13,20 @@ class CardViewModel extends ChangeNotifier{
   Random random = Random();
 
   Future<void> generateDeck() async {
+    deck = [];
     _loading = true;
     notifyListeners();
-
-    allCards = await _service.getAll();
+    try {
+      allCards = await _service.getAll();
+    } catch (e) {
+      print('Erro: $e');
+    }
     
-    for(int i = 0; i > 8; i++){
+    for (int i = 0; deck.length < 8; i++) {
       int indice = random.nextInt(allCards.length);
+      if(deck.contains(allCards[indice])){
+        continue;
+      }
         deck.add(allCards[indice]);
     }
 
